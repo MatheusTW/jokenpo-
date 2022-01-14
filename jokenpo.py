@@ -1,5 +1,20 @@
 from random import randint
 from time import sleep
+
+def leia(msg):
+    ok = False
+    valor = 0
+    while True:
+        jogador = input(msg)
+        if jogador.isnumeric():
+            valor = int(jogador)
+            ok = True
+        else:
+            if ok:
+                break
+        return valor
+
+
 print("-=" *13)
 print('''Suas opções:
 [ 1 ] PEDRA
@@ -9,14 +24,14 @@ print("-=" *13)
 
 while True:
     computador = randint(1,3)
-    jogador = int(input("Qual você escolhe? "))
+    jogador = leia("Qual você escolhe? ")
     while True:
         if jogador > 3:
-            print("Jogada invalida, Tente outra vez")
-            jogador = int(input("Qual você escolhe? "))
+            print("Jogada invalida, Digite apenas um número de 1 a 3.")
+            jogador = leia("Qual você escolhe? ")
         elif jogador <= 0:
-            print("Jogada invalida, Tente outra vez")
-            jogador = int(input("Qual você escolhe? "))
+            print("Jogada invalida, Digite apenas um número de 1 a 3.")
+            jogador = leia("Qual você escolhe? ")
         else:
             break
     print("-=" *13)
