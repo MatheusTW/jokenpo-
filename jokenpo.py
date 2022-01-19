@@ -2,26 +2,25 @@ from random import randint
 from time import sleep
 
 def leia(msg):
-    ok = False
-    valor = 0
     while True:
-        jogador = input(msg)
-        if jogador.isnumeric():
-            valor = int(jogador)
-            ok = True
+        try:
+            jogador = int(input(msg))
+        except:
+            print("Jogada invalida, Digite apenas um número de 1 a 3.")
         else:
-            if ok:
-                break
-        return valor
+            return jogador
 
 
-print("-=" *13)
-print('''Suas opções:
+def cabeçalho():
+    print("-=" *13)
+    print('''Suas opções:
 [ 1 ] PEDRA
 [ 2 ] PAPEL
 [ 3 ] TESOURA ''')
-print("-=" *13)
+    print("-=" *13)
 
+
+cabeçalho()
 while True:
     computador = randint(1,3)
     jogador = leia("Qual você escolhe? ")
@@ -69,8 +68,16 @@ while True:
     elif jogador == 3 and computador == 2:
         print("Dessa vez você venceu, na proxima eu ganho. Eu joguei PAPEL e você TESOURA")
         print("-=" *40)
-
-    continuar = input("Você quer continuar jogando? [S/N]: ").strip()
+    while True:
+        continuar = input("Você quer continuar jogando? [S/N]: ").strip()
+        if continuar in "Nn":
+            break
+        elif continuar in "Ss":
+            cabeçalho()
+            break
+        else:
+            print("Digite apenas [S ou N] por favor.")
     if continuar in "Nn":
-        break
+        print("Obrigado por jogar :)")
+        break            
 
